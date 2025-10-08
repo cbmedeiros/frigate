@@ -146,11 +146,6 @@ const config: Config = {
             }
           ]
         },
-        {
-          href: 'https://github.com/blakeblackshear/frigate',
-          label: 'GitHub',
-          position: 'right',
-        },
       ],
     },
     footer: {
