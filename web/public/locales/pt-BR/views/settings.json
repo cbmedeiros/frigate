@@ -21,7 +21,8 @@
     "motionTuner": "Ajuste de Movimento",
     "debug": "Depurar",
     "enrichments": "Enriquecimentos",
-    "triggers": "Gatilhos"
+    "triggers": "Gatilhos",
+    "remoteServers": "Servidores Remotos"
   },
   "dialog": {
     "unsavedChanges": {
@@ -80,6 +81,38 @@
       "error": {
         "clearStoredLayoutFailed": "Não foi possível apagar o layout:{{errorMessage}}",
         "clearStreamingSettingsFailed": "Não foi possível apagar os ajustes de streaming:{{errorMessage}}"
+      }
+    }
+  },
+  "remoteServers": {
+    "title": "Servidores Frigate Remotos",
+    "description": "Gerencie servidores Frigate remotos para visualizar seus itens de revisão. Cada servidor roda em uma máquina diferente e grava suas próprias câmeras.",
+    "addButton": "Adicionar Servidor Remoto",
+    "form": {
+      "addTitle": "Adicionar Servidor Remoto",
+      "editTitle": "Editar Servidor Remoto",
+      "name": "Nome do Servidor",
+      "namePlaceholder": "ex: Servidor do Escritório, Frigate da Garagem",
+      "url": "URL do Servidor",
+      "urlHelp": "Inclua a URL completa com protocolo e porta (ex: http://192.168.1.100:5000)",
+      "enabled": "Habilitar Servidor"
+    },
+    "list": {
+      "title": "Servidores Configurados",
+      "enabled": "Habilitado",
+      "disabled": "Desabilitado",
+      "toggleEnabled": "Alternar servidor habilitado/desabilitado",
+      "empty": "Nenhum servidor remoto configurado ainda. Adicione um para começar."
+    },
+    "toast": {
+      "success": {
+        "added": "Servidor remoto adicionado com sucesso",
+        "updated": "Servidor remoto atualizado com sucesso",
+        "deleted": "Servidor remoto excluído com sucesso"
+      },
+      "error": {
+        "fillFields": "Por favor, preencha todos os campos obrigatórios",
+        "invalidUrl": "Por favor, insira uma URL válida (ex: http://192.168.1.100:5000)"
       }
     }
   },

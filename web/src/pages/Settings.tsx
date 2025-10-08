@@ -39,6 +39,7 @@ import NotificationView from "@/views/settings/NotificationsSettingsView";
 import EnrichmentsSettingsView from "@/views/settings/EnrichmentsSettingsView";
 import UiSettingsView from "@/views/settings/UiSettingsView";
 import FrigatePlusSettingsView from "@/views/settings/FrigatePlusSettingsView";
+import RemoteServersSettingsView from "@/views/settings/RemoteServersSettingsView";
 import { useSearchEffect } from "@/hooks/use-overlay-state";
 import { useSearchParams } from "react-router-dom";
 import { useInitialCameraState } from "@/api/ws";
@@ -52,6 +53,7 @@ import { CameraNameLabel } from "@/components/camera/CameraNameLabel";
 const allSettingsViews = [
   "ui",
   "enrichments",
+  "remoteServers",
   "cameras",
   "masksAndZones",
   "motionTuner",
@@ -80,6 +82,7 @@ export default function Settings() {
 
   const allowedViewsForViewer: SettingsType[] = [
     "ui",
+    "remoteServers",
     "debug",
     "notifications",
   ];
@@ -262,6 +265,7 @@ export default function Settings() {
         {page == "enrichments" && (
           <EnrichmentsSettingsView setUnsavedChanges={setUnsavedChanges} />
         )}
+        {page == "remoteServers" && <RemoteServersSettingsView />}
         {page == "debug" && (
           <ObjectSettingsView selectedCamera={selectedCamera} />
         )}

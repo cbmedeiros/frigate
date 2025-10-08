@@ -36,5 +36,12 @@
   "camera": "Câmera",
   "detected": "detectado",
   "suspiciousActivity": "Atividade Suspeita",
-  "threateningActivity": "Atividade de Ameaça"
+  "threateningActivity": "Atividade de Ameaça",
+  "serverSource": {
+    "label": "Origem do Servidor",
+    "aria": "Selecionar origem do servidor",
+    "local": "Servidor Local",
+    "selectServer": "Selecionar um servidor",
+    "noRemoteServers": "Nenhum servidor remoto configurado. Vá em Configurações > Servidores Remotos para adicionar um."
+  }
 }

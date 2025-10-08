@@ -14,6 +14,7 @@
   "menu": {
     "ui": "UI",
     "enrichments": "Enrichments",
+    "remoteServers": "Remote Servers",
     "cameras": "Camera Settings",
     "masksAndZones": "Masks / Zones",
     "motionTuner": "Motion Tuner",
@@ -80,6 +81,38 @@
       "error": {
         "clearStoredLayoutFailed": "Failed to clear stored layout: {{errorMessage}}",
         "clearStreamingSettingsFailed": "Failed to clear streaming settings: {{errorMessage}}"
+      }
+    }
+  },
+  "remoteServers": {
+    "title": "Remote Frigate Servers",
+    "description": "Manage remote Frigate servers to view their review items. Each server runs on a different machine and records its own cameras.",
+    "addButton": "Add Remote Server",
+    "form": {
+      "addTitle": "Add Remote Server",
+      "editTitle": "Edit Remote Server",
+      "name": "Server Name",
+      "namePlaceholder": "e.g., Office Server, Garage Frigate",
+      "url": "Server URL",
+      "urlHelp": "Include the full URL with protocol and port (e.g., http://192.168.1.100:5000)",
+      "enabled": "Enable Server"
+    },
+    "list": {
+      "title": "Configured Servers",
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "toggleEnabled": "Toggle server enabled/disabled",
+      "empty": "No remote servers configured yet. Add one to get started."
+    },
+    "toast": {
+      "success": {
+        "added": "Remote server added successfully",
+        "updated": "Remote server updated successfully",
+        "deleted": "Remote server deleted successfully"
+      },
+      "error": {
+        "fillFields": "Please fill in all required fields",
+        "invalidUrl": "Please enter a valid URL (e.g., http://192.168.1.100:5000)"
       }
     }
   },

@@ -36,5 +36,12 @@
   "camera": "Camera",
   "detected": "detected",
   "suspiciousActivity": "Suspicious Activity",
-  "threateningActivity": "Threatening Activity"
+  "threateningActivity": "Threatening Activity",
+  "serverSource": {
+    "label": "Server Source",
+    "aria": "Select server source",
+    "local": "Local Server",
+    "selectServer": "Select a server",
+    "noRemoteServers": "No remote servers configured. Go to Settings > Remote Servers to add one."
+  }
 }
