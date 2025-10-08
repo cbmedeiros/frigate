@@ -18,7 +18,7 @@ export function useRemoteServers() {
         ...server,
         id: crypto.randomUUID(),
       };
-      
+
       setConfig({
         servers: [...(config?.servers || []), newServer],
       });
@@ -29,7 +29,7 @@ export function useRemoteServers() {
   const updateServer = useCallback(
     (id: string, updates: Partial<RemoteServer>) => {
       if (!config) return;
-      
+
       setConfig({
         servers: config.servers.map((server) =>
           server.id === id ? { ...server, ...updates } : server,
@@ -42,7 +42,7 @@ export function useRemoteServers() {
   const deleteServer = useCallback(
     (id: string) => {
       if (!config) return;
-      
+
       setConfig({
         servers: config.servers.filter((server) => server.id !== id),
       });

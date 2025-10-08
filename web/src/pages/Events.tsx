@@ -25,6 +25,8 @@ import axios from "axios";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import useSWR from "swr";
+import { useServerSource } from "@/components/filter/ServerSourceSelector";
+import { fetchFromServer } from "@/api/server-api";
 
 export default function Events() {
   const { t } = useTranslation(["views/events"]);
@@ -33,6 +35,9 @@ export default function Events() {
     revalidateOnFocus: false,
   });
   const timezone = useTimezone(config);
+
+  // server source
+  const serverSource = useServerSource();
 
   // recordings viewer
 
@@ -180,10 +185,14 @@ export default function Events() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [severity]);
 
-  const reviewSegmentFetcher = useCallback((key: Array<string> | string) => {
-    const [path, params] = Array.isArray(key) ? key : [key, undefined];
-    return axios.get(path, { params }).then((res) => res.data);
-  }, []);
+  const reviewSegmentFetcher = useCallback(
+    (key: readonly [string, Record<string, unknown>?, string?, string?]) => {
+      const [path, params] = key;
+      // Use the selected server source for fetching
+      return fetchFromServer<ReviewSegment[]>(serverSource, path, params);
+    },
+    [serverSource],
+  );
 
   const getKey = useCallback(() => {
     const params = {
@@ -194,8 +203,14 @@ export default function Events() {
       before: reviewSearchParams["before"] || last24Hours.before,
       after: reviewSearchParams["after"] || last24Hours.after,
     };
-    return ["review", params];
-  }, [reviewSearchParams, last24Hours]);
+    // Include server source in the key to trigger refetch when server changes
+    return [
+      "review",
+      params,
+      serverSource.type,
+      serverSource.serverId,
+    ] as const;
+  }, [reviewSearchParams, last24Hours, serverSource]);
 
   const { data: reviews, mutate: updateSegments } = useSWR<ReviewSegment[]>(
     getKey,
@@ -268,6 +283,21 @@ export default function Events() {
 
   // review summary
 
+  const reviewSummaryFetcher = useCallback(
+    (
+      key: readonly [
+        string,
+        Record<string, unknown>?,
+        string?,
+        string?,
+      ],
+    ) => {
+      const [path, params] = key;
+      return fetchFromServer<ReviewSummary>(serverSource, path, params);
+    },
+    [serverSource],
+  );
+
   const { data: reviewSummary, mutate: updateSummary } = useSWR<ReviewSummary>(
     [
       "review/summary",
@@ -277,7 +307,10 @@ export default function Events() {
         labels: reviewSearchParams["labels"] ?? null,
         zones: reviewSearchParams["zones"] ?? null,
       },
-    ],
+      serverSource.type,
+      serverSource.serverId,
+    ] as const,
+    reviewSummaryFetcher,
     {
       revalidateOnFocus: true,
       refreshInterval: 30000,

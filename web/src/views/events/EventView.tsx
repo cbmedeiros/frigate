@@ -57,6 +57,7 @@ import ReviewDetailDialog from "@/components/overlay/detail/ReviewDetailDialog";
 
 import { useTimelineZoom } from "@/hooks/use-timeline-zoom";
 import { useTranslation } from "react-i18next";
+import { ServerSourceSelector } from "@/components/filter/ServerSourceSelector";
 
 type EventViewProps = {
   reviewItems?: SegmentedReviewData;
@@ -265,6 +266,7 @@ export default function EventView({
         {isMobile && (
           <Logo className="absolute inset-x-1/2 h-8 -translate-x-1/2" />
         )}
+        {!isMobile && <ServerSourceSelector />}
         <ToggleGroup
           className="*:rounded-md *:px-3 *:py-4"
           type="single"

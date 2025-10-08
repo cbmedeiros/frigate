@@ -23,7 +23,7 @@ export function createServerAxios(source: ServerSource): AxiosInstance {
 export async function fetchFromServer<T>(
   source: ServerSource,
   path: string,
-  params?: Record<string, any>,
+  params?: Record<string, unknown>,
 ): Promise<T> {
   const axiosInstance = createServerAxios(source);
   const response = await axiosInstance.get(path, { params });

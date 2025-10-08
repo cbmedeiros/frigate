@@ -47,15 +47,19 @@ export function ServerSourceSelector() {
     [enabledServers, setSelectedSource],
   );
 
-  const currentValue = selectedSource?.type === "local" 
-    ? "local" 
-    : selectedSource?.serverId || "local";
+  const currentValue =
+    selectedSource?.type === "local"
+      ? "local"
+      : selectedSource?.serverId || "local";
 
   return (
     <div className="flex items-center gap-2">
       <LuServer className="size-4 text-muted-foreground" />
       <Select value={currentValue} onValueChange={handleValueChange}>
-        <SelectTrigger className="w-[200px]" aria-label={t("serverSource.aria")}>
+        <SelectTrigger
+          className="w-[200px]"
+          aria-label={t("serverSource.aria")}
+        >
           <SelectValue placeholder={t("serverSource.selectServer")} />
         </SelectTrigger>
         <SelectContent>
@@ -76,10 +80,9 @@ export function ServerSourceSelector() {
 }
 
 export function useServerSource(): ServerSource {
-  const [selectedSource] = usePersistence<ServerSource>(
-    "reviewServerSource",
-    { type: "local" },
-  );
+  const [selectedSource] = usePersistence<ServerSource>("reviewServerSource", {
+    type: "local",
+  });
 
   return selectedSource || { type: "local" };
 }
