@@ -65,8 +65,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           target: frigate
           tags: |
-            ghcr.io/inventhorsaumek/frigate_inv:${{ inputs.tag }}
-            ghcr.io/inventhorsaumek/frigate_inv:latest
+            ghcr.io/cbmedeiros/frigate:${{ inputs.tag }}
+            ghcr.io/cbmedeiros/frigate:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
           
