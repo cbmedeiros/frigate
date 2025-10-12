@@ -21,12 +21,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      # Stop docker so we can mount more space at /var/lib/docker
       - name: Stop docker
         run: sudo systemctl stop docker
       
-      # This creates a virtual volume at /var/lib/docker to maximize the size
-      # As of 2/14/2024, this results in 97G for docker images
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
         with:
@@ -56,12 +53,8 @@ jobs:
           VERSION="0.17.0"
           echo "VERSION = \"${VERSION}-${COMMIT_HASH}\"" > frigate/version.py
       
-      - name: Convert repository name to lowercase
-        id: lowercase
-        uses: ASzc/change-string-case-action@v6
-        with:
-          string: ${{ github.repository }}
-          
+      # Removido passo de converter nome do repositório para lowercase, pois não é mais usado
+      
       - name: Build and push to GitHub Container Registry
         if: ${{ inputs.push_to_registry }}
         uses: docker/build-push-action@v5
@@ -72,8 +65,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           target: frigate
           tags: |
-            ghcr.io/${{ steps.lowercase.outputs.lowercase }}:${{ inputs.tag }}
-            ghcr.io/${{ steps.lowercase.outputs.lowercase }}:latest
+            ghcr.io/inventhorsaumek/frigate_inv:${{ inputs.tag }}
+            ghcr.io/inventhorsaumek/frigate_inv:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
           
